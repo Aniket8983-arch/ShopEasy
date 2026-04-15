@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy - Modern E-Commerce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+        header {
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2.brand {
+            margin: 0;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+        nav ul li a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        .cart-info {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        section {
+            margin-bottom: 60px;
+            padding-top: 60px;
+            margin-top: -60px; /* Offset for sticky header */
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            border-radius: 16px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        .btn-remove {
+            background-color: #ef4444;
+            display: none;
+        }
+        .btn-remove:hover {
+            background-color: #dc2626;
+        }
+        .offers-banner {
+            background: linear-gradient(135deg, #f43f5e, #fb923c);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        .offers-banner h2 { margin-top: 0; font-size: 36px; }
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(to right, #f8fafc, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+        .price {
+            color: #4ade80;
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        footer {
+            background-color: rgba(15, 23, 42, 0.9);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <h2 class="brand">ShopEasy</h2>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#offers">Offers</a></li>
+            <li><a href="#buy">Buy</a></li>
+            <li>
+                <div class="cart-info" id="cart-indicator">
+                    🛒 <span id="cart-count">0</span>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <h1>Welcome to ShopEasy</h1>
+        <p>Discover the latest electronics, fashion, and accessories at unbeatable prices.</p>
+        <a href="#buy" class="btn" style="text-decoration:none;">Shop Now</a>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers">
+        <div class="offers-banner">
+            <h2>Summer Sale! Up to 50% Off</h2>
+            <p>Hurry up and grab the best deals of the season before they are gone.</p>
+            <button class="btn" style="background:#fff; color:#f43f5e; margin-top:15px;" onclick="location.href='#buy'">Browse Deals</button>
+        </div>
+    </section>
+
+    <!-- Buy Section -->
+    <section id="buy">
+        <h2 class="section-title">Trending Products</h2>
+        <div class="product-list" id="product-container">
+            <!-- Products injected by JS -->
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 ShopEasy Online Store. Built with Modern Design.</p>
+</footer>
+
+<script>
+    const products = [
+        { id: 1, name: 'Premium Smartphone', price: '₹14,999', img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+        { id: 2, name: 'Wireless Headphones', price: '₹2,499', img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+        { id: 3, name: 'Running Shoes', price: '₹3,299', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+        { id: 4, name: 'Smart Watch Series X', price: '₹5,999', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+        { id: 5, name: 'Gaming Laptop', price: '₹64,999', img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+        { id: 6, name: 'Designer Sunglasses', price: '₹1,599', img: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
+    ];
+
+    let cartCount = 0;
+    const cartItems = new Set();
+    const cartCountEl = document.getElementById('cart-count');
+    const cartIndicator = document.getElementById('cart-indicator');
+    const productContainer = document.getElementById('product-container');
+
+    function renderProducts() {
+        productContainer.innerHTML = '';
+        products.forEach(product => {
+            const inCart = cartItems.has(product.id);
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${product.img}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p class="price">${product.price}</p>
+                <div class="button-group">
+                    <button class="btn" onclick="addToCart(${product.id})" style="display: ${inCart ? 'none' : 'block'}">Add to Cart</button>
+                    <button class="btn btn-remove" onclick="removeFromCart(${product.id})" style="display: ${inCart ? 'block' : 'none'}">Remove</button>
+                </div>
+            `;
+            productContainer.appendChild(card);
+        });
+    }
+
+    function addToCart(productId) {
+        if (!cartItems.has(productId)) {
+            cartItems.add(productId);
+            cartCount++;
+            updateCart();
+            renderProducts();
+        }
+    }
+
+    function removeFromCart(productId) {
+        if (cartItems.has(productId)) {
+            cartItems.delete(productId);
+            cartCount--;
+            updateCart();
+            renderProducts();
+        }
+    }
+
+    function updateCart() {
+        cartCountEl.innerText = cartCount;
+        cartIndicator.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            cartIndicator.style.transform = 'scale(1)';
+        }, 200);
+    }
+
+    renderProducts();
+</script>
+
+</body>
+</html>
